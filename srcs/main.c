@@ -6,13 +6,24 @@ static void	ps_error()
 	exit(EXIT_FAILURE);
 }
 
+void	printflst(t_list *lst)
+{
+	if (lst)
+	{
+		printf("%d ", *(int *)lst->content);
+		printflst(lst->next);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_list *pile_init;
 	// t_list *pile_b;
 
-	if (!arg_check(ac - 1, av + 1))
+	//checker si n = 1
+	pile_init = parse_arg(ac - 1, av + 1);
+	if (!pile_init)
 		ps_error();
-	pile_init = arg_to_lst(ac - 1, av + 1);
+	printflst(pile_init);
 	return (0);
 }

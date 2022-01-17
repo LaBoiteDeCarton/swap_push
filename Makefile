@@ -2,7 +2,8 @@ NAME = push_swap
 S_DIR = srcs
 H_DIR = includes
 SRCS_FILES = main.c \
-				utils.c
+				utils.c \
+				parse.c
 SRCS = $(addprefix ${S_DIR}/, ${SRCS_FILES})
 OBJS = ${SRCS:.c=.o}
 LFT = lib/libft

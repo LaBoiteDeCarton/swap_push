@@ -2,7 +2,8 @@
 # define PUSH_SWAP_H
 
 #include "libft.h"
+#include <stdio.h> // TO DELETE
 
-int	arg_check(int ac, char **av);
+t_list	*parse_arg(int n, char **arg);
 
 #endif
