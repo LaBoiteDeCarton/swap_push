@@ -27,7 +27,7 @@ struct s_ps
 	t_list *pile_a;
 	t_list *pile_b;
 	t_list *moves;
-	t_list *b_moves;
+	t_list *b_moves; // add int size best move, -1 if not exist
 };
 
 t_list	*parse_arg(int n, char **arg);
@@ -47,11 +47,19 @@ void	rrr(t_ps *ps);
 void	n_move(t_ps *ps, void(*f)(t_ps *), unsigned int n);
 void	ft_lstadd_move(t_ps *ps, t_list *move);
 
+//algor de tri
+
+void	ft_trisimple(t_ps *ps);
+void	ft_trirapide(t_ps *ps);
+
+//utils 
+
 void	trier(t_ps *ps);
 int		ft_pileissorted(t_list *pile);
 int		ft_pileisordered(t_list *pile);
 void	ft_lstswap(t_list **lst1, t_list **lst2);
 void	ft_lstdellast(t_list **alst, void (*del)(void *));
+int		ft_strtablen(char **s);
 
 //TO DELETE
 

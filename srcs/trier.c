@@ -24,28 +24,11 @@ void	ft_do_tri(t_ps *ps, void (*f)(t_ps *ps))
 	ft_lstclear(&(ps->moves), free);
 	ps->moves = NULL;
 	f(ps);
-	if (ft_lstsize(ps->moves) < ft_lstsize(ps->b_moves) || !ps->b_moves)
+	if (f == &ft_trisimple)
+		ft_lstswap(&(ps->moves), &(ps->b_moves));
+	else if (ft_lstsize(ps->moves) < ft_lstsize(ps->b_moves))
 		ft_lstswap(&(ps->moves), &(ps->b_moves));
 }
-
-// void ft_testmoves(t_ps *ps)
-// {
-// 	printf("Before using moves :\nPile A : ");
-// 	printfpile(ps->pile_a);
-// 	printf("Pile B : ");
-// 	printfpile(ps->pile_b);
-// 	pb(ps);
-// 	pb(ps);
-// 	sb(ps);
-// 	pb(ps);
-// 	rrr(ps);
-// 	printf("After using moves :\nPile A : ");
-// 	printfpile(ps->pile_a);
-// 	printf("Pile B : ");
-// 	printfpile(ps->pile_b);
-// 	printf("Moves : ");
-// 	printfmove(ps->moves);
-// }
 
 void ft_trisimple(t_ps *ps)
 {
@@ -152,6 +135,6 @@ void ft_trirapide(t_ps *ps)
 
 void	trier(t_ps *ps)
 {
-	// ft_do_tri(ps, &ft_trisimple);
+	ft_do_tri(ps, &ft_trisimple);
 	ft_do_tri(ps, &ft_trirapide);
 }

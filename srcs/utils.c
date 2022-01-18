@@ -60,6 +60,19 @@ void ft_lstdellast(t_list **alst, void (*del)(void *))
 	}
 }
 
+int		ft_strtablen(char **s)
+{
+	int size;
+
+	size = 0;
+	while (*s)
+	{
+		s++;
+		size++;
+	}
+	return (size);
+}
+
 //TO DELETE
 
 void	printfpile(t_list *lst)
@@ -78,7 +91,6 @@ void	printfmove(t_list *lst)
 	char *str;
 
 	str = malloc(sizeof(str) * 4);
-	printf("[ ");
 	while (lst)
 	{
 		if (*(t_op *)lst->content == op_sa)
@@ -103,8 +115,7 @@ void	printfmove(t_list *lst)
 			ft_strlcpy(str, "rrb", 4);
 		else if (*(t_op *)lst->content == op_rrr)
 			ft_strlcpy(str, "rrr", 4);
-		printf("%s ", str);
+		printf("%s\n", str);
 		lst = lst->next;
 	}
-	printf("]\n");
 }
