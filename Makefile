@@ -3,7 +3,9 @@ S_DIR = srcs
 H_DIR = includes
 SRCS_FILES = main.c \
 				utils.c \
-				parse.c
+				parse.c \
+				trier.c \
+				moves.c
 SRCS = $(addprefix ${S_DIR}/, ${SRCS_FILES})
 OBJS = ${SRCS:.c=.o}
 LFT = lib/libft
@@ -16,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror -I ${H_DIR}
 
 ${NAME}: ${OBJS}
 	make -C ${LFT}
-	gcc ${FLAGS} ${LIBFLAGS} ${OBJS} -o ${NAME}
+	gcc ${FLAGS} ${LIBFLAGS} ${OBJS} -o ${NAME} -g -fsanitize=address
 
 all: ${NAME}
 

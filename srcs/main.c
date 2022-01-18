@@ -6,24 +6,30 @@ static void	ps_error()
 	exit(EXIT_FAILURE);
 }
 
-void	printflst(t_list *lst)
-{
-	if (lst)
-	{
-		printf("%d ", *(int *)lst->content);
-		printflst(lst->next);
-	}
-}
-
 int	main(int ac, char **av)
 {
-	t_list *pile_init;
+	t_ps ps;
 	// t_list *pile_b;
 
 	//checker si n = 1
-	pile_init = parse_arg(ac - 1, av + 1);
-	if (!pile_init)
-		ps_error();
-	printflst(pile_init);
+	ps.pile_init = NULL;
+	ps.pile_a = NULL;
+	ps.pile_b = NULL;
+	ps.moves = NULL;
+	ps.b_moves = NULL;
+	if (ac > 1)
+	{
+		ps.pile_init = parse_arg(ac - 1, av + 1);
+		if (!ps.pile_init)
+			ps_error();
+	}
+	
+	trier(&ps);
+	printf("After using moves :\nPile A : ");
+	printfpile(ps.pile_a);
+	printf("Pile B : ");
+	printfpile(ps.pile_b);
+	printf("Moves : ");
+	printfmove(ps.b_moves);
 	return (0);
 }
