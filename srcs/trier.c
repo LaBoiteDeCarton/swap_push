@@ -78,13 +78,13 @@ void ft_rectrirapide(t_ps *ps, int n, int toleft)
 		i = 0;
 		if (toleft)
 		{
-			ls = n / 2;
-			rs = n - n / 2;
+			ls = n - n / 2;
+			rs = n / 2;
 		}
 		else
 		{
-			ls = n - n / 2;
-			rs = n / 2;
+			ls = n / 2;
+			rs = n - n / 2;
 		}
 		while (i < n)
 		{

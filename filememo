@@ -1,5 +1,7 @@
 pb + ra + pa = sa + ra ?
 
+sa ra + sa ra = pb + ra + ra + pa
+
 
 Inverser le sens de move pour faire des correction via addmove plus rapide, et inverser a la fin uniquement
 un simple addfront a la place de addback suffie, changer le count_last_op en comptant du debus et non de la fin (evite la fonction en recurence)
