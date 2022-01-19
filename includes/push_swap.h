@@ -60,6 +60,8 @@ int		ft_pileisordered(t_list *pile);
 void	ft_lstswap(t_list **lst1, t_list **lst2);
 void	ft_lstdellast(t_list **alst, void (*del)(void *));
 int		ft_strtablen(char **s);
+void	chartab_free(char **s);
+void	ps_free(t_ps *ps);
 
 //TO DELETE
 

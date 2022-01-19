@@ -243,13 +243,13 @@ void	ft_lstadd_move(t_ps *ps, t_list *move)
 		ft_lstdellast(&ps->moves, &free);
 	else
 		ft_lstadd_back(&ps->moves, move);
-	if (ft_lstcountlast(ps->moves, op_ra) > (ft_lstsize(ps->pile_a) / 2) + 1) //trop de rota d'un côté
+	if (ft_lstcountlast(ps->moves, op_ra) > ft_lstsize(ps->pile_a) / 2) //trop de rota d'un côté
 		n_move(ps, rra, ft_lstsize(ps->pile_a));
-	else if (ft_lstcountlast(ps->moves, op_rra) > (ft_lstsize(ps->pile_a) / 2) + 1) //trop de rota d'un côté
+	else if (ft_lstcountlast(ps->moves, op_rra) > ft_lstsize(ps->pile_a) / 2) //trop de rota d'un côté
 		n_move(ps, ra, ft_lstsize(ps->pile_a));
-	else if (ft_lstcountlast(ps->moves, op_rb) > (ft_lstsize(ps->pile_b) / 2) + 1) //trop de rota d'un côté
+	else if (ft_lstcountlast(ps->moves, op_rb) > ft_lstsize(ps->pile_b) / 2) //trop de rota d'un côté
 		n_move(ps, rrb, ft_lstsize(ps->pile_b));
-	else if (ft_lstcountlast(ps->moves, op_rrb) > (ft_lstsize(ps->pile_b) / 2) + 1) //trop de rota d'un côté
+	else if (ft_lstcountlast(ps->moves, op_rrb) > ft_lstsize(ps->pile_b) / 2) //trop de rota d'un côté
 		n_move(ps, rb, ft_lstsize(ps->pile_b));
 }
 

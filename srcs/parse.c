@@ -32,7 +32,7 @@ t_list	*parse_arg(int n, char **arg)
 	if (!ft_isint(*arg))
 		return (NULL);
 	val = malloc(sizeof(int));
-	if (!n)
+	if (!val)
 		return (NULL);
 	*val = ft_atoi(*arg); // on ne verifie pas si le int est plus grand que INT_MAX, a faire
 	res = ft_lstnew(val);

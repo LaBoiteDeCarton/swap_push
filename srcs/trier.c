@@ -2,19 +2,14 @@
 
 void *nothing(void *arg)
 {
-	return (arg); 
-	/* on nefait pas de deep copy du lst mais surement faudra le mettre en place
-	car pour reinit la pile A on va la freeeeeee 
-
-	pour un deep copy :
+	//deep copy :
 	int *n;
 
 	n = malloc(sizeof(int));
 	if (!n)
 		return (NULL);
 	*n = *(int *)arg;
-	return (n);
-	*/
+	return ((void *)n);
 }
 
 void	ft_do_tri(t_ps *ps, void (*f)(t_ps *ps))
@@ -62,35 +57,40 @@ void ft_rectrirapide(t_ps *ps, int n, int toleft)
 	int ls;
 	int rs;
 
+	printf("size = %d\ntoleft = %d\n", n, toleft);
+	printfpile(ps->pile_a);
+	printfpile(ps->pile_b);
+	printf("\n");
 	if (n > 1)
 	{
 		if (toleft)
-			n_move(ps, pb, n / 2);
-		else
-			n_move(ps, pa, n / 2);
-		if (toleft)
 		{
+			n_move(ps, pb, n / 2);
 			ft_rectrirapide(ps, n - n / 2, 0);
 			ft_rectrirapide(ps, n / 2, 1);
-		}
+		}	
 		else
 		{
+			n_move(ps, pa, n / 2);
 			ft_rectrirapide(ps, n / 2, 0);
 			ft_rectrirapide(ps, n - n / 2, 1);
 		}
 		i = 0;
 		if (toleft)
 		{
-			ls = n - n / 2;
-			rs = n / 2;
-		}
-		else
-		{
 			ls = n / 2;
 			rs = n - n / 2;
 		}
+		else
+		{
+			ls = n - n / 2;
+			rs = n / 2;
+		}
 		while (i < n)
 		{
+			printfpile(ps->pile_a);
+			printfpile(ps->pile_b);
+			printf("\n");
 			if (!ls)
 			{
 				rs--;

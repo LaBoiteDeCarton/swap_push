@@ -10,9 +10,7 @@ int	main(int ac, char **av)
 {
 	t_ps ps;
 	char **toparse;
-	// t_list *pile_b;
 
-	//checker si n = 1
 	ps.pile_init = NULL;
 	ps.pile_a = NULL;
 	ps.pile_b = NULL;
@@ -24,11 +22,14 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		ps.pile_init = parse_arg(ft_strtablen(toparse), toparse);
+		if (ac ==  2)
+			chartab_free(toparse);
 		if (!ps.pile_init)
 			ps_error();
 	}
 	
 	trier(&ps);
 	printfmove(ps.b_moves);
+	ps_free(&ps);
 	return (0);
 }
