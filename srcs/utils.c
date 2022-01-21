@@ -27,6 +27,19 @@ void	chartab_free(char **s)
 	free(s);
 }
 
+int		ft_pileissorted_n(t_list *pile, int n)
+{
+	if (!pile)
+		return (1);
+	while (pile->next && n--)
+	{
+		if (*(int *)pile->content > *(int *)pile->next->content)
+			return (0);
+		pile = pile->next;
+	}
+	return (1);
+}
+
 int		ft_pileissorted(t_list *pile)
 {
 	if (!pile)
@@ -66,6 +79,41 @@ void	ft_lstswap(t_list **lst1, t_list **lst2)
 	tmp = *lst1;
 	*lst1 = *lst2;
 	*lst2 = tmp;
+}
+
+void ft_lstdelfirst(t_list **alst, void (*del)(void *))
+{
+	t_list *tmp;
+
+	if (*alst && !(*alst)->next)
+	{
+		ft_lstdelone(*alst, del);
+		*alst = NULL;
+	}
+	else if (*alst)
+	{
+		tmp = *alst;
+		*alst = (*alst)->next;
+		ft_lstdelone(tmp, del);
+	}
+}
+
+void ft_lstdelnfirst(t_list **alst, int n, void (*del)(void *))
+{
+	t_list *tmp;
+
+	if (n && *alst && !(*alst)->next)
+	{
+		ft_lstdelone(*alst, del);
+		*alst = NULL;
+	}
+	else if (*alst && n)
+	{
+		tmp = *alst;
+		*alst = (*alst)->next;
+		ft_lstdelone(tmp, del);
+		ft_lstdelnfirst(alst, n - 1, del);
+	}
 }
 
 void ft_lstdellast(t_list **alst, void (*del)(void *))
@@ -117,9 +165,13 @@ void	printfmove(t_list *lst)
 {	
 	char *str;
 
-	str = malloc(sizeof(str) * 4);
-	while (lst)
+
+	if (lst)
 	{
+		printfmove(lst->next);
+		str = malloc(sizeof(str) * 4);
+		if (!str)
+			exit(0); //ici faire un handle error pour free ps correctement;
 		if (*(t_op *)lst->content == op_sa)
 			ft_strlcpy(str, "sa", 3);
 		else if (*(t_op *)lst->content == op_sb)
@@ -142,7 +194,7 @@ void	printfmove(t_list *lst)
 			ft_strlcpy(str, "rrb", 4);
 		else if (*(t_op *)lst->content == op_rrr)
 			ft_strlcpy(str, "rrr", 4);
-		printf("%s\n", str);
-		lst = lst->next;
+		printf("%s\n", str); //utiliser ft_putstr, voir si printf est autorisé
+		free(str);
 	}
 }

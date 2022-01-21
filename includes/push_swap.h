@@ -27,7 +27,8 @@ struct s_ps
 	t_list *pile_a;
 	t_list *pile_b;
 	t_list *moves;
-	t_list *b_moves; // add int size best move, -1 if not exist
+	t_list *b_moves;
+	int		bm_size; //evite de recalculer la taille de bmoves a chaque fois
 };
 
 t_list	*parse_arg(int n, char **arg);
@@ -45,20 +46,26 @@ void	rra(t_ps *ps);
 void	rrb(t_ps *ps);
 void	rrr(t_ps *ps);
 void	n_move(t_ps *ps, void(*f)(t_ps *), unsigned int n);
-void	ft_lstadd_move(t_ps *ps, t_list *move);
+void	ft_malloc_and_add_move(t_list **moves, t_op op);
+void	ft_lstadd_move(t_ps *ps, t_op move);
+void	ft_lstaddn_move(t_ps *ps, t_op op, int n);
 
 //algor de tri
 
 void	ft_trisimple(t_ps *ps);
+void	ft_trisimple_n(t_ps *ps, int n);
 void	ft_trirapide(t_ps *ps);
 
 //utils 
 
 void	trier(t_ps *ps);
 int		ft_pileissorted(t_list *pile);
+int		ft_pileissorted_n(t_list *ps, int n);
 int		ft_pileisordered(t_list *pile);
 void	ft_lstswap(t_list **lst1, t_list **lst2);
-void	ft_lstdellast(t_list **alst, void (*del)(void *));
+void	ft_lstdellast(t_list **alst, void (*del)(void *)); //inutile
+void	ft_lstdelfirst(t_list **alst, void (*del)(void *));
+void	ft_lstdelnfirst(t_list **alst, int n, void (*del)(void *));
 int		ft_strtablen(char **s);
 void	chartab_free(char **s);
 void	ps_free(t_ps *ps);

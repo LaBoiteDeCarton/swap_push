@@ -14,25 +14,26 @@ void *nothing(void *arg)
 
 void	ft_do_tri(t_ps *ps, void (*f)(t_ps *ps))
 {
+	ft_lstclear(&(ps->pile_a), free);
+	ft_lstclear(&(ps->pile_b), free);
 	ps->pile_a = ft_lstmap(ps->pile_init, &nothing, &free);
 	ps->pile_b = NULL;
 	ft_lstclear(&(ps->moves), free);
 	ps->moves = NULL;
 	f(ps);
-	if (f == &ft_trisimple)
+	if (ft_lstsize(ps->moves) < ps->bm_size)
 		ft_lstswap(&(ps->moves), &(ps->b_moves));
-	else if (ft_lstsize(ps->moves) < ft_lstsize(ps->b_moves))
-		ft_lstswap(&(ps->moves), &(ps->b_moves));
+	ps->bm_size = ft_lstsize(ps->b_moves); //on reclacule quand meme, utiliser min de deux valeurs
 }
 
-void ft_trisimple(t_ps *ps)
+void ft_trisimple_n(t_ps *ps, int n)
 {
-	int n;
+	int i;
 
-	n = ft_lstsize(ps->pile_a);
-	while (!ft_pileissorted(ps->pile_a))
+	while (!ft_pileissorted_n(ps->pile_a, n))
 	{
-		while (n-- > 1)
+		i = n;
+		while (i-- > 1)
 		{
 			if (*(int *)ps->pile_a->content > *(int *)ps->pile_a->next->content)
 				sa(ps);
@@ -40,7 +41,6 @@ void ft_trisimple(t_ps *ps)
 			// 	break ;
 			ra(ps);
 		}
-		n = ft_lstsize(ps->pile_a);
 		// if (ft_pileisordered(ps->pile_a) > n / 2)
 		// 	n_move(ps, rra, n - ft_pileisordered(ps->pile_a));
 		// else if (ft_pileisordered(ps->pile_a) <=  n / 2)
@@ -48,7 +48,14 @@ void ft_trisimple(t_ps *ps)
 		// if (ft_pileissorted(ps->pile_a))
 		// 	break;
 		ra(ps);
+		if (ft_lstsize(ps->moves) > ps->bm_size + 200)
+			break ;
 	}
+}
+
+void ft_trisimple(t_ps *ps)
+{
+	ft_trisimple_n(ps, ft_lstsize(ps->pile_a));
 }
 
 void ft_rectrirapide(t_ps *ps, int n, int toleft)
@@ -57,23 +64,19 @@ void ft_rectrirapide(t_ps *ps, int n, int toleft)
 	int ls;
 	int rs;
 
-	printf("size = %d\ntoleft = %d\n", n, toleft);
-	printfpile(ps->pile_a);
-	printfpile(ps->pile_b);
-	printf("\n");
 	if (n > 1)
 	{
 		if (toleft)
 		{
 			n_move(ps, pb, n / 2);
-			ft_rectrirapide(ps, n - n / 2, 0);
-			ft_rectrirapide(ps, n / 2, 1);
+			ft_rectrirapide(ps, n / 2, 0);
+			ft_rectrirapide(ps, n - n / 2, 1);
 		}	
 		else
 		{
 			n_move(ps, pa, n / 2);
-			ft_rectrirapide(ps, n / 2, 0);
-			ft_rectrirapide(ps, n - n / 2, 1);
+			ft_rectrirapide(ps, n / 2, 1);
+			ft_rectrirapide(ps, n - n / 2, 0);
 		}
 		i = 0;
 		if (toleft)
@@ -88,9 +91,6 @@ void ft_rectrirapide(t_ps *ps, int n, int toleft)
 		}
 		while (i < n)
 		{
-			printfpile(ps->pile_a);
-			printfpile(ps->pile_b);
-			printf("\n");
 			if (!ls)
 			{
 				rs--;
@@ -135,6 +135,6 @@ void ft_trirapide(t_ps *ps)
 
 void	trier(t_ps *ps)
 {
-	ft_do_tri(ps, &ft_trisimple);
 	ft_do_tri(ps, &ft_trirapide);
+	ft_do_tri(ps, &ft_trisimple);
 }

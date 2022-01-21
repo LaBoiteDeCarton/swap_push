@@ -55,202 +55,293 @@ void	rr_pile(t_list **alst)
 
 void	sa(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
 	if (ps->pile_a && ps->pile_a->next) //en mettant la condition ici on enleve les mouveemnt inutiles pour racocurcir notre code de correction
 	{
-		move = malloc(sizeof(t_op));
-		if (!move)
-			exit(EXIT_FAILURE); //faire du free toutoutout
-		*move = op_sa;
+		move = op_sa;
 		s_pile(&(ps->pile_a));
-		ft_lstadd_move(ps, ft_lstnew(move));
+		ft_lstadd_move(ps, move);
 	}
 }
 
 void	sb(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
 	if (ps->pile_a && ps->pile_a->next)
 	{
-		move = malloc(sizeof(t_op));
-		if (!move)
-			exit(EXIT_FAILURE); //faire du free toutoutout
-		*move = op_sb;
+		move = op_sb;
 		s_pile(&(ps->pile_b));
-		ft_lstadd_move(ps, ft_lstnew(move));
+		ft_lstadd_move(ps, move);
 	}	
 }
 
 void	ss(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
-	move = malloc(sizeof(t_op));
-	if (!move)
-		exit(EXIT_FAILURE); //faire du free toutoutout
-	*move = op_ss;
+	move = op_ss;
 	s_pile(&(ps->pile_a));
 	s_pile(&(ps->pile_b));
-	ft_lstadd_move(ps, ft_lstnew(move));
+	ft_lstadd_move(ps, move);
 }
 
 void	pa(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
 	if (ps->pile_b)
 	{
-		move = malloc(sizeof(t_op));
-		if (!move)
-			exit(EXIT_FAILURE); //faire du free toutoutout
-		*move = op_pa;
+		move = op_pa;
 		p_pile(&(ps->pile_b), &(ps->pile_a));
-		ft_lstadd_move(ps, ft_lstnew(move));
+		ft_lstadd_move(ps, move);
 	}
 }
 
 void	pb(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
 	if(ps->pile_a)
 	{
-		move = malloc(sizeof(t_op));
-		if (!move)
-			exit(EXIT_FAILURE); //faire du free toutoutout
-		*move = op_pb;
+		move = op_pb;
 		p_pile(&(ps->pile_a), &(ps->pile_b));
-		ft_lstadd_move(ps, ft_lstnew(move));
+		ft_lstadd_move(ps, move);
 	}
 }
 
 void	ra(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
 	if (ps->pile_a && ps->pile_a->next)
 	{
-		move = malloc(sizeof(t_op));
-		if (!move)
-			exit(EXIT_FAILURE); //faire du free toutoutout
-		*move = op_ra;
+		move = op_ra;
 		r_pile(&(ps->pile_a));
-		ft_lstadd_move(ps, ft_lstnew(move));
+		ft_lstadd_move(ps, move);
 	}
 }
 
 void	rb(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
 	if (ps->pile_b && ps->pile_b->next)
 	{
-		move = malloc(sizeof(t_op));
-		if (!move)
-			exit(EXIT_FAILURE); //faire du free toutoutout
-		*move = op_rb;
+		move = op_rb;
 		r_pile(&(ps->pile_b));
-		ft_lstadd_move(ps, ft_lstnew(move));
+		ft_lstadd_move(ps, move);
 	}
 }
 
 void	rr(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
-	move = malloc(sizeof(t_op));
-	if (!move)
-		exit(EXIT_FAILURE); //faire du free toutoutout
-	*move = op_rr;
+	move = op_rr;
 	r_pile(&(ps->pile_a));
 	r_pile(&(ps->pile_b));
-	ft_lstadd_move(ps, ft_lstnew(move));
+	ft_lstadd_move(ps, move);
 }
 
 void	rra(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
 	if (ps->pile_a && ps->pile_a->next)
 	{
-		move = malloc(sizeof(t_op));
-		if (!move)
-			exit(EXIT_FAILURE); //faire du free toutoutout
-		*move = op_rra;
+		move = op_rra;
 		rr_pile(&(ps->pile_a));
-		ft_lstadd_move(ps, ft_lstnew(move));
+		ft_lstadd_move(ps, move);
 	}
 }
 
 void	rrb(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
 	if (ps->pile_a && ps->pile_a->next)
 	{
-		move = malloc(sizeof(t_op));
-		if (!move)
-			exit(EXIT_FAILURE); //faire du free toutoutout
-		*move = op_rrb;
+		move = op_rrb;
 		rr_pile(&(ps->pile_b));
-		ft_lstadd_move(ps, ft_lstnew(move));
+		ft_lstadd_move(ps, move);
 	}
 }
 
 void rrr(t_ps *ps)
 {
-	t_op	*move;
+	t_op	move;
 
-	move = malloc(sizeof(t_op));
-	if (!move)
-		exit(EXIT_FAILURE); //faire du free toutoutout
-	*move = op_rrr;
+	move = op_rrr;
 	rr_pile(&(ps->pile_a));
 	rr_pile(&(ps->pile_b));
-	ft_lstadd_move(ps, ft_lstnew(move));
+	ft_lstadd_move(ps, move);
 }
 
-int		ft_lstcountlast(t_list *lst, t_op op)
+int		ft_lstcountop(t_list *lst, t_op op)
 {
 	int count;
 
 	if (!lst)
 		return (0);
-	count = ft_lstcountlast(lst->next, op);
-	if (count == ft_lstsize(lst->next) && *(t_op *)lst->content == op)
+	count = 0;
+	while (lst)
+	{
+		if (*(t_op *)lst->content != op)
+			break ;
 		count++;
+		lst = lst->next;
+	}
 	return (count);
-
 }
 
-void	ft_lstadd_move(t_ps *ps, t_list *move)
+void	ft_lstaddn_move(t_ps *ps, t_op op, int n)
+{
+	while (n-- > 0)
+		ft_lstadd_move(ps, op);
+}
+
+void	ft_malloc_and_add_move(t_list **moves, t_op op)
+{
+	t_op *p_op;
+	t_list *move;
+
+	p_op = (t_op *)malloc(sizeof(t_op));
+	if (!p_op)
+		exit(EXIT_FAILURE); //handleerror ici pour free comme il faut
+	*p_op = op;
+	move = ft_lstnew(p_op);
+	if (!move)
+	{
+		free(p_op);
+		exit(EXIT_FAILURE); //handle_error
+	}
+	ft_lstadd_front(moves, move);
+}
+
+void	ft_lstadd3_move(t_ps *ps, t_op op)
+{
+	if (ft_lstsize(ps->moves) < 3)
+		ft_malloc_and_add_move(&ps->moves, op);
+	else if (op == op_ra &&
+				*(t_op *)ps->moves->content == op_sa &&
+				*(t_op *)ps->moves->next->content == op_ra &&
+				*(t_op *)ps->moves->next->next->content == op_sa)
+	{
+		ft_lstdelnfirst(&ps->moves, 3, &free);
+		ft_lstadd_move(ps, op_pb);
+		ft_lstadd_move(ps, op_ra);
+		ft_lstadd_move(ps, op_ra);
+		ft_lstadd_move(ps, op_pa);
+	}
+	else if (op == op_rra &&
+				*(t_op *)ps->moves->content == op_sa &&
+				*(t_op *)ps->moves->next->content == op_rra &&
+				*(t_op *)ps->moves->next->next->content == op_sa)
+	{
+		ft_lstdelnfirst(&ps->moves, 3, &free);
+		ft_lstadd_move(ps, op_pb);
+		ft_lstadd_move(ps, op_rra);
+		ft_lstadd_move(ps, op_rra);
+		ft_lstadd_move(ps, op_pa);
+	}
+	else if (op == op_rb &&
+				*(t_op *)ps->moves->content == op_sb &&
+				*(t_op *)ps->moves->next->content == op_rb &&
+				*(t_op *)ps->moves->next->next->content == op_sb)
+	{
+		ft_lstdelnfirst(&ps->moves, 3, &free);
+		ft_lstadd_move(ps, op_pa);
+		ft_lstadd_move(ps, op_rb);
+		ft_lstadd_move(ps, op_rb);
+		ft_lstadd_move(ps, op_pb);
+	}
+	else if (op == op_rrb &&
+				*(t_op *)ps->moves->content == op_sb &&
+				*(t_op *)ps->moves->next->content == op_rrb &&
+				*(t_op *)ps->moves->next->next->content == op_sb)
+	{
+		ft_lstdelnfirst(&ps->moves, 3, &free);
+		ft_lstadd_move(ps, op_pa);
+		ft_lstadd_move(ps, op_rrb);
+		ft_lstadd_move(ps, op_rrb);
+		ft_lstadd_move(ps, op_pb);
+	}
+	else
+		ft_malloc_and_add_move(&ps->moves, op);
+}
+
+void	ft_lstadd2_move(t_ps *ps, t_op op)
+{
+	if (!ps->moves || !ps->moves->next)
+		ft_malloc_and_add_move(&ps->moves, op);
+	else if (op == op_pa &&
+				*(t_op *)ps->moves->content == op_ra &&
+				*(t_op *)ps->moves->next->content == op_pb)
+	{
+		ft_lstdelnfirst(&ps->moves, 2, &free);
+		ft_lstadd_move(ps, op_sa);
+		ft_lstadd_move(ps, op_ra);
+	}
+	else if (op == op_pa &&
+				*(t_op *)ps->moves->content == op_rra &&
+				*(t_op *)ps->moves->next->content == op_pb)
+	{
+		ft_lstdelnfirst(&ps->moves, 2, &free);
+		ft_lstadd_move(ps, op_rra);
+		ft_lstadd_move(ps, op_sa);
+	}
+	else if (op == op_pb &&
+				*(t_op *)ps->moves->content == op_rb &&
+				*(t_op *)ps->moves->next->content == op_pa)
+	{
+		ft_lstdelnfirst(&ps->moves, 2, &free);
+		ft_lstadd_move(ps, op_sb);
+		ft_lstadd_move(ps, op_rb);
+	}
+	else if (op == op_pb &&
+				*(t_op *)ps->moves->content == op_rrb &&
+				*(t_op *)ps->moves->next->content == op_pa)
+	{
+		ft_lstdelnfirst(&ps->moves, 2, &free);
+		ft_lstadd_move(ps, op_rrb);
+		ft_lstadd_move(ps, op_sb);
+	}
+	else
+		ft_lstadd3_move(ps, op);
+}
+
+void	ft_lstadd_move(t_ps *ps, t_op op) // attention de free le move car on ne l'utilise pas dans certains cas
 {
 	if (!ps->moves)
-		ft_lstadd_back(&ps->moves, move);
-	else if (*(t_op *)(move->content) == op_pa && *(t_op *)(ft_lstlast(ps->moves)->content) == op_pb)
-		ft_lstdellast(&ps->moves, &free);
-	else if (*(t_op *)move->content == op_pb && *(t_op *)(ft_lstlast(ps->moves)->content) == op_pa)
-		ft_lstdellast(&ps->moves, &free);
-	else if (*(t_op *)move->content == op_ra && *(t_op *)(ft_lstlast(ps->moves)->content) == op_rra)
-		ft_lstdellast(&ps->moves, &free);
-	else if (*(t_op *)move->content == op_rra && *(t_op *)(ft_lstlast(ps->moves)->content) == op_ra)
-		ft_lstdellast(&ps->moves, &free);
-	else if (*(t_op *)move->content == op_rrb && *(t_op *)(ft_lstlast(ps->moves)->content) == op_rb)
-		ft_lstdellast(&ps->moves, &free);
-	else if (*(t_op *)move->content == op_rb && *(t_op *)(ft_lstlast(ps->moves)->content) == op_rrb)
-		ft_lstdellast(&ps->moves, &free);
+		ft_malloc_and_add_move(&ps->moves, op);
+	else if (op == op_pa && *(t_op *)(ps->moves->content) == op_pb)
+		ft_lstdelfirst(&ps->moves, &free);
+	else if (op == op_pb && *(t_op *)(ps->moves->content) == op_pa)
+		ft_lstdelfirst(&ps->moves, &free);
+	else if (op == op_ra && *(t_op *)(ps->moves->content) == op_rra)
+		ft_lstdelfirst(&ps->moves, &free);
+	else if (op == op_rra && *(t_op *)(ps->moves->content) == op_ra)
+		ft_lstdelfirst(&ps->moves, &free);
+	else if (op == op_rrb && *(t_op *)(ps->moves->content) == op_rb)
+		ft_lstdelfirst(&ps->moves, &free);
+	else if (op == op_rb && *(t_op *)(ps->moves->content) == op_rrb)
+		ft_lstdelfirst(&ps->moves, &free);
+	else if (op == op_sa && *(t_op *)(ps->moves->content) == op_sa)
+		ft_lstdelfirst(&ps->moves, &free);
+	else if (op == op_sb && *(t_op *)(ps->moves->content) == op_sb)
+		ft_lstdelfirst(&ps->moves, &free);
 	else
-		ft_lstadd_back(&ps->moves, move);
-	if (ft_lstcountlast(ps->moves, op_ra) > ft_lstsize(ps->pile_a) / 2) //trop de rota d'un côté
-		n_move(ps, rra, ft_lstsize(ps->pile_a));
-	else if (ft_lstcountlast(ps->moves, op_rra) > ft_lstsize(ps->pile_a) / 2) //trop de rota d'un côté
-		n_move(ps, ra, ft_lstsize(ps->pile_a));
-	else if (ft_lstcountlast(ps->moves, op_rb) > ft_lstsize(ps->pile_b) / 2) //trop de rota d'un côté
-		n_move(ps, rrb, ft_lstsize(ps->pile_b));
-	else if (ft_lstcountlast(ps->moves, op_rrb) > ft_lstsize(ps->pile_b) / 2) //trop de rota d'un côté
-		n_move(ps, rb, ft_lstsize(ps->pile_b));
+		ft_lstadd2_move(ps, op);
+	if (ft_lstcountop(ps->moves, op_ra) > ft_lstsize(ps->pile_a) / 2) //trop de rota d'un côté
+		ft_lstaddn_move(ps, op_rra, ft_lstsize(ps->pile_a));
+	else if (ft_lstcountop(ps->moves, op_rra) > ft_lstsize(ps->pile_a) / 2) //trop de rota d'un côté
+		ft_lstaddn_move(ps, op_ra, ft_lstsize(ps->pile_a));
+	else if (ft_lstcountop(ps->moves, op_rb) > ft_lstsize(ps->pile_b) / 2) //trop de rota d'un côté
+		ft_lstaddn_move(ps, op_rrb, ft_lstsize(ps->pile_b));
+	else if (ft_lstcountop(ps->moves, op_rrb) > ft_lstsize(ps->pile_b) / 2) //trop de rota d'un côté
+		ft_lstaddn_move(ps, op_rb, ft_lstsize(ps->pile_b));
 }
 
 void	n_move(t_ps *ps, void(*f)(t_ps *), unsigned int n)
