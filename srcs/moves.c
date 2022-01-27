@@ -314,6 +314,9 @@ void	ft_lstadd2_move(t_ps *ps, t_op op)
 
 void	ft_lstadd_move(t_ps *ps, t_op op) // attention de free le move car on ne l'utilise pas dans certains cas
 {
+	printfpile(ps->pile_a);
+	printfpile(ps->pile_b);
+	printf("\n");
 	if (!ps->moves)
 		ft_malloc_and_add_move(&ps->moves, op);
 	else if (op == op_pa && *(t_op *)(ps->moves->content) == op_pb)

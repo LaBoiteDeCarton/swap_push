@@ -12,6 +12,7 @@ int	main(int ac, char **av)
 	char **toparse;
 
 	ps.pile_init = NULL;
+	ps.ordered = NULL;
 	ps.pile_a = NULL;
 	ps.pile_b = NULL;
 	ps.moves = NULL;

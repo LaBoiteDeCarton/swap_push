@@ -24,6 +24,7 @@ typedef enum s_op
 struct s_ps
 {
 	t_list *pile_init;
+	t_list *ordered;
 	t_list *pile_a;
 	t_list *pile_b;
 	t_list *moves;
@@ -55,7 +56,8 @@ void	ft_lstaddn_move(t_ps *ps, t_op op, int n);
 void	ft_trisimple(t_ps *ps);
 void	ft_trisimple_n(t_ps *ps, int n);
 void	ft_trirapide(t_ps *ps);
-
+void 	ft_rectrirapideleftn(t_ps *ps, int n);
+void	ft_rectrirapiderightn(t_ps *ps, int n);
 //utils 
 
 void	trier(t_ps *ps);
