@@ -9,8 +9,8 @@ void ft_rectrirapiderightn(t_ps *ps, int n)
 	if (n > 1)
 	{
 		n_move(ps, pa, n / 2);
-		ft_rectrirapideleftn(ps, n / 2);
 		ft_rectrirapiderightn(ps, n - n / 2);
+		ft_rectrirapideleftn(ps, n / 2);
 		i = 0;
 		ls = n / 2;
 		rs = n - n / 2;

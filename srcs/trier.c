@@ -21,7 +21,6 @@ void	ft_do_tri(t_ps *ps, void (*f)(t_ps *ps))
 	ft_lstclear(&(ps->moves), free);
 	ps->moves = NULL;
 	f(ps);
-	printf("\n\nNEXT TRI\n");
 	if (!ps->ordered)
 		ps->ordered = ft_lstmap(ps->pile_a, &nothing, &free);
 	if (ft_lstsize(ps->moves) < ps->bm_size)
