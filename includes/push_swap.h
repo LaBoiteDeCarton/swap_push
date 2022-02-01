@@ -58,6 +58,8 @@ void	ft_trisimple_n(t_ps *ps, int n);
 void	ft_trirapide(t_ps *ps);
 void 	ft_rectrirapideleftn(t_ps *ps, int n);
 void	ft_rectrirapiderightn(t_ps *ps, int n);
+void	triradix(t_ps *ps);
+
 //utils 
 
 void	trier(t_ps *ps);
@@ -68,6 +70,9 @@ void	ft_lstswap(t_list **lst1, t_list **lst2);
 void	ft_lstdellast(t_list **alst, void (*del)(void *)); //inutile
 void	ft_lstdelfirst(t_list **alst, void (*del)(void *));
 void	ft_lstdelnfirst(t_list **alst, int n, void (*del)(void *));
+void	*ft_lstgetn(t_list *lst, int n);
+int		ft_lstcmp(t_list *lst, int (*f)(void *, void *), void *x);
+int		ft_cmporder(void *a, void *b);
 int		ft_strtablen(char **s);
 void	chartab_free(char **s);
 void	ps_free(t_ps *ps);

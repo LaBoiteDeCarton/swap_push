@@ -21,7 +21,6 @@ void	ft_do_tri(t_ps *ps, void (*f)(t_ps *ps))
 	ft_lstclear(&(ps->moves), free);
 	ps->moves = NULL;
 	f(ps);
-	printfpile(ps->pile_a);
 	printf("\n\nNEXT TRI\n");
 	if (!ps->ordered)
 		ps->ordered = ft_lstmap(ps->pile_a, &nothing, &free);
@@ -34,4 +33,6 @@ void	trier(t_ps *ps)
 {
 	ft_do_tri(ps, &ft_trirapide);
 	ft_do_tri(ps, &ft_trisimple);
+	if (ps->ordered)
+		ft_do_tri(ps, &triradix);
 }

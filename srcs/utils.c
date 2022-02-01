@@ -135,6 +135,15 @@ void ft_lstdellast(t_list **alst, void (*del)(void *))
 	}
 }
 
+void	*ft_lstgetn(t_list *lst, int n)
+{
+	while (lst && n-- > 0)
+		lst = lst->next;
+	if (!lst)
+		return (NULL);
+	return (lst->content);
+}		
+
 int		ft_strtablen(char **s)
 {
 	int size;
@@ -197,4 +206,16 @@ void	printfmove(t_list *lst)
 		printf("%s\n", str); //utiliser ft_putstr, voir si printf est autorisé
 		free(str);
 	}
+}
+
+int		ft_cmporder(void *a, void *b)
+{
+	return(*(int *)a < *(int *)b);
+}
+
+int		ft_lstcmp(t_list *lst, int (*f)(void *, void *), void *x)
+{
+	if (!lst)
+		return (0);
+	return (f(lst->content, x));
 }

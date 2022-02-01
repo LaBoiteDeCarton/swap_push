@@ -7,6 +7,7 @@ SRCS_FILES = main.c \
 				trier.c \
 				trisimple.c \
 				trirapide.c \
+				triradix.c \
 				moves.c
 SRCS = $(addprefix ${S_DIR}/, ${SRCS_FILES})
 OBJS = ${SRCS:.c=.o}
@@ -20,7 +21,7 @@ FLAGS = -Wall -Wextra -Werror -I ${H_DIR}
 
 ${NAME}: ${OBJS}
 	make -C ${LFT}
-	gcc ${FLAGS} ${LIBFLAGS} ${OBJS} -o ${NAME}
+	gcc ${FLAGS} ${LIBFLAGS} ${OBJS} -o ${NAME} -g -fsanitize=address
 
 all: ${NAME}
 
