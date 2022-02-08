@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	ps.pile_b = NULL;
 	ps.moves = NULL;
 	ps.b_moves = NULL;
-	ps.bm_size = INT32_MAX;
+	ps.bm_size = INT32_MAX - 20000;
 	toparse = av + 1;
 	if (ac == 2)
 		toparse = ft_split(av[1], ' ');

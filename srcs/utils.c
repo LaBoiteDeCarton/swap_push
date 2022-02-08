@@ -158,6 +158,13 @@ int		ft_strtablen(char **s)
 }
 
 //TO DELETE
+void	printfps(t_ps *ps)
+{
+	printf("Pile A :\n");
+	printfpile(ps->pile_a);
+	printf("Pile B :\n");
+	printfpile(ps->pile_b);
+}
 
 void	printfpile(t_list *lst)
 {	
@@ -170,41 +177,45 @@ void	printfpile(t_list *lst)
 	printf("]\n");
 }
 
-void	printfmove(t_list *lst)
-{	
+void	printfop(t_op op)
+{
 	char *str;
 
+	str = malloc(sizeof(str) * 4);
+	if (!str)
+		exit(0); //ici faire un handle error pour free ps correctement;
+	if (op == op_sa)
+		ft_strlcpy(str, "sa", 3);
+	else if (op == op_sb)
+		ft_strlcpy(str, "sb", 3);
+	else if (op == op_ss)
+		ft_strlcpy(str, "ss", 3);
+	else if (op == op_pa)
+		ft_strlcpy(str, "pa", 3);
+	else if (op == op_pb)
+		ft_strlcpy(str, "pb", 3);
+	else if (op == op_ra)
+		ft_strlcpy(str, "ra", 3);
+	else if (op == op_rb)
+		ft_strlcpy(str, "rb", 3);
+	else if (op == op_rr)
+		ft_strlcpy(str, "rr", 3);
+	else if (op == op_rra)
+		ft_strlcpy(str, "rra", 4);
+	else if (op == op_rrb)
+		ft_strlcpy(str, "rrb", 4);
+	else if (op == op_rrr)
+		ft_strlcpy(str, "rrr", 4);
+	printf("%s\n", str); //utiliser ft_putstr, voir si printf est autorisé
+	free(str);
+}
 
+void	printfmove(t_list *lst)
+{	
 	if (lst)
 	{
 		printfmove(lst->next);
-		str = malloc(sizeof(str) * 4);
-		if (!str)
-			exit(0); //ici faire un handle error pour free ps correctement;
-		if (*(t_op *)lst->content == op_sa)
-			ft_strlcpy(str, "sa", 3);
-		else if (*(t_op *)lst->content == op_sb)
-			ft_strlcpy(str, "sb", 3);
-		else if (*(t_op *)lst->content == op_ss)
-			ft_strlcpy(str, "ss", 3);
-		else if (*(t_op *)lst->content == op_pa)
-			ft_strlcpy(str, "pa", 3);
-		else if (*(t_op *)lst->content == op_pb)
-			ft_strlcpy(str, "pb", 3);
-		else if (*(t_op *)lst->content == op_ra)
-			ft_strlcpy(str, "ra", 3);
-		else if (*(t_op *)lst->content == op_rb)
-			ft_strlcpy(str, "rb", 3);
-		else if (*(t_op *)lst->content == op_rr)
-			ft_strlcpy(str, "rr", 3);
-		else if (*(t_op *)lst->content == op_rra)
-			ft_strlcpy(str, "rra", 4);
-		else if (*(t_op *)lst->content == op_rrb)
-			ft_strlcpy(str, "rrb", 4);
-		else if (*(t_op *)lst->content == op_rrr)
-			ft_strlcpy(str, "rrr", 4);
-		printf("%s\n", str); //utiliser ft_putstr, voir si printf est autorisé
-		free(str);
+		printfop(*(t_op *)lst->content);
 	}
 }
 

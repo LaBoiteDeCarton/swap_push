@@ -8,6 +8,7 @@ SRCS_FILES = main.c \
 				trisimple.c \
 				trirapide.c \
 				triradix.c \
+				tripivot.c \
 				moves.c
 SRCS = $(addprefix ${S_DIR}/, ${SRCS_FILES})
 OBJS = ${SRCS:.c=.o}

@@ -59,6 +59,9 @@ void	ft_trirapide(t_ps *ps);
 void 	ft_rectrirapideleftn(t_ps *ps, int n);
 void	ft_rectrirapiderightn(t_ps *ps, int n);
 void	triradix(t_ps *ps);
+void	ft_recpivotright(t_ps *ps, int n, int start);
+void ft_recpivotleft(t_ps *ps, int n, int start);
+void ft_tripivot(t_ps *ps);
 
 //utils 
 
@@ -81,5 +84,7 @@ void	ps_free(t_ps *ps);
 
 void	printfpile(t_list *lst);
 void	printfmove(t_list *lst);
+void	printfps(t_ps *ps);
+void	printfop(t_op op);
 
 #endif
