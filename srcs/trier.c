@@ -36,4 +36,6 @@ void	trier(t_ps *ps)
 		ft_do_tri(ps, &triradix);
 	if (ps->ordered)
 		ft_do_tri(ps, &ft_tripivot);
+	if(ps->ordered)
+		ft_do_tri(ps, &tridoublepivot);
 }

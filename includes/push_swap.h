@@ -63,6 +63,17 @@ void	ft_recpivotright(t_ps *ps, int n, int start);
 void ft_recpivotleft(t_ps *ps, int n, int start);
 void ft_tripivot(t_ps *ps);
 
+
+void	tridoublepivot(t_ps *ps);
+void	rec_tridoublepivotleft(t_ps *ps, int n, int start);
+void	rec_tridoublepivotrightbot(t_ps *ps, int n, int start);
+void	rec_tridoublepivotleftbot(t_ps *ps, int n, int start);
+void	rec_tridoublepivotright(t_ps *ps, int n, int start);
+
+
+
+
+
 //utils 
 
 void	trier(t_ps *ps);
