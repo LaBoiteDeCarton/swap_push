@@ -1,6 +1,6 @@
-#include "push_swap.h"
+#include "tri.h"
 
-void ft_recpivotright(t_ps *ps, int n, int start)
+void recpivotright(t_ps *ps, int n, int start)
 {
 	int	pivot;
 	int	i;
@@ -11,7 +11,7 @@ void ft_recpivotright(t_ps *ps, int n, int start)
 	{
 		pa(ps);
 		pa(ps);
-		ft_recpivotleft(ps, 2, 0);
+		recpivotleft(ps, 2, 0);
 	}
 	else if (n > 1)
 	{
@@ -25,12 +25,12 @@ void ft_recpivotright(t_ps *ps, int n, int start)
 				pa(ps);
 		}
 		n_move(ps, &rrb, n / 2);
-		ft_recpivotleft(ps, n / 2 + (n % 2), start + n / 2);
-		ft_recpivotright(ps, n / 2, start);
+		recpivotleft(ps, n / 2 + (n % 2), start + n / 2);
+		recpivotright(ps, n / 2, start);
 	}
 }
 
-void ft_recpivotleft(t_ps *ps, int n, int start)
+void recpivotleft(t_ps *ps, int n, int start)
 {
 	int	pivot;
 	int	i;
@@ -49,12 +49,12 @@ void ft_recpivotleft(t_ps *ps, int n, int start)
 				ra(ps);
 		}
 		n_move(ps, &rra, n / 2 + (n % 2));
-		ft_recpivotleft(ps, n / 2 + (n % 2), start + n / 2);
-		ft_recpivotright(ps, n / 2 , start);
+		recpivotleft(ps, n / 2 + (n % 2), start + n / 2);
+		recpivotright(ps, n / 2 , start);
 	}
 }
 
-void ft_tripivot(t_ps *ps)
+void tripivot(t_ps *ps)
 {
-	ft_recpivotleft(ps, ft_lstsize(ps->pile_a), 0);
+	recpivotleft(ps, ft_lstsize(ps->pile_a), 0);
 }

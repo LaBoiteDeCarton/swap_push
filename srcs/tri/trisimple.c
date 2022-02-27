@@ -1,6 +1,6 @@
-#include "push_swap.h"
+#include "tri.h"
 
-void ft_trisimple_n(t_ps *ps, int n)
+void trisimple_n(t_ps *ps, int n)
 {
 	int i;
 
@@ -19,7 +19,7 @@ void ft_trisimple_n(t_ps *ps, int n)
 	}
 }
 
-void ft_trisimple(t_ps *ps)
+void trisimple(t_ps *ps)
 {
-	ft_trisimple_n(ps, ft_lstsize(ps->pile_a));
+	trisimple_n(ps, ft_lstsize(ps->pile_a));
 }

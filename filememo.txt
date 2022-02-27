@@ -85,3 +85,5 @@ RA
 RA
 RA
 RA
+
+srcs/main.o srcs/moves/addn_move.o srcs/moves/invrotate.o srcs/moves/n_move.o srcs/moves/push.o srcs/moves/rotate.o srcs/moves/swap.o srcs/moves/utils.o srcs/parse.o srcs/printfmove.o srcs/tri/tridouble.o srcs/tri/tridoublepivot.o srcs/tri/trier.o srcs/tri/triinsert.o srcs/tri/tripivot.o srcs/tri/triradix.o srcs/tri/trirapide.o srcs/tri/trisimple.o

@@ -1,4 +1,4 @@
-#include "triradix.h"
+#include "tri.h"
 
 void	tri_trois_left(t_ps *ps)
 {

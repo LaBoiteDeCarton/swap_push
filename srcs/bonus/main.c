@@ -1,5 +1,6 @@
+#include "checker.h"
 #include "push_swap.h"
-#include "tri.h"
+
 
 static void	put_error(char *str)
 {
@@ -23,6 +24,8 @@ int	main(int ac, char **av)
 	t_ps	ps;
 	int		parsing_success;
 
+	if (ac == 1)
+		return (EXIT_SUCCESS);
 	init_arg(&ps);
 	if (ac == 2)
 	{
@@ -39,8 +42,7 @@ int	main(int ac, char **av)
 		put_error("Error");
 	if (parsing_success == -1)
 		put_error("Error: Unable to malloc");
-	trier(&ps);
-	printfmove(ps.b_moves);
+	checkmove(&ps);
 	ps_free(&ps);
-	return (0);
+	return (EXIT_SUCCESS);
 }

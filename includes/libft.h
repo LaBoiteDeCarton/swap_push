@@ -15,6 +15,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
+# define BUFFER_SIZE 512
 
 typedef struct s_list
 {
@@ -68,5 +69,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_islower(int c);
 int		ft_isupper(int c);
 int 	ft_strisdigit(char *str);
+int		get_next_line(int fd, char **line);
 
 #endif

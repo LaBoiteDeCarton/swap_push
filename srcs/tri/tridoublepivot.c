@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "tri.h"
 
 void	rec_tridoublepivotright(t_ps *ps, int n, int start)
 {

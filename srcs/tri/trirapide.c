@@ -1,6 +1,6 @@
-#include "push_swap.h"
+#include "tri.h"
 
-void ft_rectrirapiderightn(t_ps *ps, int n)
+void rectrirapiderightn(t_ps *ps, int n)
 {
 	int i;
 	int ls;
@@ -9,8 +9,8 @@ void ft_rectrirapiderightn(t_ps *ps, int n)
 	if (n > 1)
 	{
 		n_move(ps, pa, n / 2);
-		ft_rectrirapiderightn(ps, n - n / 2);
-		ft_rectrirapideleftn(ps, n / 2);
+		rectrirapiderightn(ps, n - n / 2);
+		rectrirapideleftn(ps, n / 2);
 		i = 0;
 		ls = n / 2;
 		rs = n - n / 2;
@@ -37,7 +37,7 @@ void ft_rectrirapiderightn(t_ps *ps, int n)
 	}
 }
 
-void ft_rectrirapideleftn(t_ps *ps, int n)
+void rectrirapideleftn(t_ps *ps, int n)
 {
 	int i;
 	int ls;
@@ -46,8 +46,8 @@ void ft_rectrirapideleftn(t_ps *ps, int n)
 	if (n > 1)
 	{
 		n_move(ps, pb, n / 2);
-		ft_rectrirapiderightn(ps, n / 2);
-		ft_rectrirapideleftn(ps, n - n / 2);
+		rectrirapiderightn(ps, n / 2);
+		rectrirapideleftn(ps, n - n / 2);
 		i = 0;
 		ls = n - n / 2;
 		rs = n / 2;
@@ -74,7 +74,7 @@ void ft_rectrirapideleftn(t_ps *ps, int n)
 	}
 }
 
-void ft_trirapide(t_ps *ps)
+void trirapide(t_ps *ps)
 {
-	ft_rectrirapideleftn(ps, ft_lstsize(ps->pile_a));
+	rectrirapideleftn(ps, ft_lstsize(ps->pile_a));
 }

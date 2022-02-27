@@ -1,9 +1,11 @@
 #include "push_swap.h"
 
-int	ft_isint(char *c)
+static int	ft_isint(char *c)
 {
 	if (*c == '-' || *c == '+')
 		c++;
+	if (!*c)
+		return(0);
 	while (*c)
 	{
 		if (!ft_isdigit(*(c++)))
@@ -12,7 +14,7 @@ int	ft_isint(char *c)
 	return (1);
 }
 
-int		ft_cont_isinlst(t_list *lst, void *cont)
+static int		ft_cont_isinlst(t_list *lst, void *cont)
 {
 	if (!lst)
 		return (0);
@@ -21,33 +23,41 @@ int		ft_cont_isinlst(t_list *lst, void *cont)
 	return (ft_cont_isinlst(lst->next, cont)); 
 }
 
-t_list	*parse_arg(int n, char **arg)
+static t_list	*create_case(char *arg)
 {
-	t_list	*res;
-	t_list	*next;
 	int		*val;
+	t_list	*new_case;
 
-	if (n == 0)
-		return (NULL);
-	if (!ft_isint(*arg))
-		return (NULL);
 	val = malloc(sizeof(int));
 	if (!val)
 		return (NULL);
-	*val = ft_atoi(*arg); // on ne verifie pas si le int est plus grand que INT_MAX, a faire
-	res = ft_lstnew(val);
-	if (!res)
+	*val = ft_atoi(arg);
+	new_case = ft_lstnew(val);
+	if (!new_case)
 	{
 		free(val);
 		return (NULL);
 	}
-	next = parse_arg(n - 1, arg + 1);
-	if (ft_cont_isinlst(next, res->content) || ft_lstsize(next) != n - 1)
+	return (new_case);
+}
+
+int	parse(int ac, char **av, t_list **pile)
+{
+	t_list *new_case;
+
+	while (ac--)
 	{
-		ft_lstclear(&next, &free);
-		ft_lstclear(&res, &free);
-		return (NULL);
+		if (!ft_isint(av[ac]))
+			return (0);
+		new_case = create_case(av[ac]);
+		if (!new_case)
+			return (-1);
+		if (ft_cont_isinlst(*pile, new_case->content))
+		{
+			ft_lstclear(&new_case, &free);
+			return (0);
+		}
+		ft_lstadd_front(pile, new_case);
 	}
-	ft_lstadd_front(&next, res);
-	return (res);
+	return (1);
 }
