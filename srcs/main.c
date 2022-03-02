@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 		av = ft_split(av[1], ' ');
 		ac = ft_strtablen(av);
 		parsing_success = parse(ac, av, &(ps.pile_init));
-		free(av);
+		chartab_free(av);
 	}
 	else
 		parsing_success = parse(ac - 1, av + 1, &(ps.pile_init));

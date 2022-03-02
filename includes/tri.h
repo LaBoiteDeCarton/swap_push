@@ -10,13 +10,15 @@ void	trier(t_ps *ps);
 /*Tri Radix : 
 	blablabla
 	Complexité : 
-*/
+
+idée abbandonné car moins efficace que doublepivot dans tous les cas
 
 void	triradix(t_ps *ps);
 void	rec_triradixright(t_ps *ps, int n, int start);
 void	rec_triradixleft(t_ps *ps, int n, int start);
 void	rec_triradixleftbot(t_ps *ps, int n, int start);
 void	rec_triradixrightbot(t_ps *ps, int n, int start);
+*/
 
 /*Tri Rapide : diviser pour reigner
 	On deplace la moitié de la pile dans la pile opposé.
@@ -65,5 +67,16 @@ void	rec_tridoublepivotright(t_ps *ps, int n, int start);
 */
 void	trisimple(t_ps *ps);
 void	trisimple_n(t_ps *ps, int n);
+
+/*Tri Insert : Un autre algorithme GLOUTON
+	On deplace de la pile A dans B le plus petit elements N fois.
+	La pile B est trié a l'envers.
+	On reinsere dans la pile A.
+	Complexité : à calculer (surement du N^2)
+*/
+void	ft_triinsert(t_ps *ps);
+void 	insertright_n(t_ps *ps, int n);
+void	insertleft_n(t_ps *ps, int n);
+void	insertrightnormal_n(t_ps *ps, int n);
 
 #endif

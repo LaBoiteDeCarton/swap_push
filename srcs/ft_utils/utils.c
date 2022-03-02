@@ -1,22 +1,22 @@
 #include "push_swap.h"
 
-//TO DELETE
 void	printfps(t_ps *ps)
 {
-	printf("Pile A :\n");
+	ft_putendl_fd("Pile A :", 1);
 	printfpile(ps->pile_a);
-	printf("Pile B :\n");
+	ft_putendl_fd("Pile B :", 1);
 	printfpile(ps->pile_b);
 }
 
 void	printfpile(t_list *lst)
 {	
-	printf("[ ");
+	ft_putstr_fd("[ ", 1);
 	while (lst)
 	{
-		printf("%d ", *(int *)lst->content);
+		ft_putnbr_fd(*(int *)lst->content, 1);
+		ft_putchar_fd(' ', 1);
 		lst = lst->next;
 	}
-	printf("]\n");
+	ft_putendl_fd("]", 1);
 }
 

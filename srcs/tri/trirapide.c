@@ -1,76 +1,72 @@
 #include "tri.h"
 
+static t_ps	*para(t_ps *ps)
+{
+	pa(ps);
+	ra(ps);
+	return (ps);
+}
+
+static t_ps *pbrb(t_ps *ps)
+{
+	pb(ps);
+	rb(ps);
+	return (ps);
+}
+
 void rectrirapiderightn(t_ps *ps, int n)
 {
-	int i;
 	int ls;
 	int rs;
 
 	if (n > 1)
 	{
-		n_move(ps, pa, n / 2);
+		n_move(ps, &pa, n / 2);
 		rectrirapiderightn(ps, n - n / 2);
 		rectrirapideleftn(ps, n / 2);
-		i = 0;
 		ls = n / 2;
 		rs = n - n / 2;
-		while (i < n)
+		while (1)
 		{
-			if (!ls)
-				rs--;
-			else if (!rs)
-			{
-				ls--;
+			if (!ls || !rs)
+				break ;
+			ls -= *(int *)ps->pile_a->content < *(int *)ps->pile_b->content;
+			rs -= *(int *)ps->pile_a->content > *(int *)ps->pile_b->content;
+			if (*(int *)ps->pile_a->content < *(int *)ps->pile_b->content)
 				pb(ps);
-			}
-			else if (*(int *)ps->pile_a->content < *(int *)ps->pile_b->content)
-			{
-				ls--;
-				pb(ps);
-			}
-			else
-				rs--;
 			rb(ps);
-			i++;
 		}
-		n_move(ps, rrb, n);
+		n_move(ps, &pbrb, ls);
+		n_move(ps, &rb, rs);
+		n_move(ps, &rrb, n);
 	}
 }
 
 void rectrirapideleftn(t_ps *ps, int n)
 {
-	int i;
 	int ls;
 	int rs;
 
 	if (n > 1)
 	{
-		n_move(ps, pb, n / 2);
+		n_move(ps, &pb, n / 2);
 		rectrirapiderightn(ps, n / 2);
 		rectrirapideleftn(ps, n - n / 2);
-		i = 0;
 		ls = n - n / 2;
 		rs = n / 2;
-		while (i < n)
+		while (1)
 		{
-			if (!ls)
-			{
-				rs--;
+			if (!ls || !rs)
+				break ;
+			ls -= *(int *)ps->pile_a->content < *(int *)ps->pile_b->content;
+			rs -= *(int *)ps->pile_a->content > *(int *)ps->pile_b->content;
+			if (*(int *)ps->pile_a->content > *(int *)ps->pile_b->content)
 				pa(ps);
-			}
-			else if (!rs)
-				ls--;
-			else if (*(int *)ps->pile_a->content < *(int *)ps->pile_b->content)
-				ls--;
-			else
-			{
-				rs--;
-				pa(ps);
-			}
 			ra(ps);
-			i++;
 		}
-		n_move(ps, rra, n);
+		n_move(ps, &para, rs);
+		n_move(ps, &ra, ls);
+		n_move(ps, &rra, n);
 	}
 }
 

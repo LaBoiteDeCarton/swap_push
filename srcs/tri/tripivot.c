@@ -5,13 +5,10 @@ void recpivotright(t_ps *ps, int n, int start)
 	int	pivot;
 	int	i;
 
-	if (n == 1)
-		pa(ps);
-	else if (n == 2)
+	if (n < 4)
 	{
-		pa(ps);
-		pa(ps);
-		recpivotleft(ps, 2, 0);
+		n_move(ps, &pa, n);
+		trisimple_n(ps, n);
 	}
 	else if (n > 1)
 	{
@@ -35,8 +32,8 @@ void recpivotleft(t_ps *ps, int n, int start)
 	int	pivot;
 	int	i;
 
-	if (n == 2 && *(int *)ps->pile_a->content > *(int *)ps->pile_a->next->content)
-		sa(ps); //techniquement pas utile
+	if (n < 4)
+		trisimple_n(ps, n);
 	else if (n > 2)
 	{
 		pivot = *(int *)ft_lstgetn(ps->ordered, start + n / 2);

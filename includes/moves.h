@@ -18,18 +18,18 @@ typedef enum s_op
 	op_rrr	
 } t_op;
 
-void	sa(t_ps *ps);
-void	sb(t_ps *ps);
-void	ss(t_ps *ps);
-void	pa(t_ps *ps);
-void	pb(t_ps *ps);
-void	ra(t_ps *ps);
-void	rb(t_ps *ps);
-void	rr(t_ps *ps);
-void	rra(t_ps *ps);
-void	rrb(t_ps *ps);
-void	rrr(t_ps *ps);
-void	n_move(t_ps *ps, void(*f)(t_ps *), unsigned int n);
+t_ps	*sa(t_ps *ps);
+t_ps	*sb(t_ps *ps);
+t_ps	*ss(t_ps *ps);
+t_ps	*pa(t_ps *ps);
+t_ps	*pb(t_ps *ps);
+t_ps	*ra(t_ps *ps);
+t_ps	*rb(t_ps *ps);
+t_ps	*rr(t_ps *ps);
+t_ps	*rra(t_ps *ps);
+t_ps	*rrb(t_ps *ps);
+t_ps	*rrr(t_ps *ps);
+t_ps	*n_move(t_ps *ps, t_ps *(*f)(t_ps *), unsigned int n);
 void	ft_lstadd_move(t_ps *ps, t_op op);
 void	ft_lstaddn_move(t_ps *ps, t_op op, int n);
 

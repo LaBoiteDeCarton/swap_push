@@ -68,11 +68,11 @@ static void	ft_lstadd4_move(t_ps *ps)
 static void	ft_lstadd3_move(t_ps *ps, t_op op)
 {
 	ft_malloc_and_add_move(&ps->moves, op);
-	if (ps->moves->next)
+	if (ft_lstsize(ps->moves) > 2)
 	{
-		if (op == op_pa &&
-					*(t_op *)ps->moves->content == op_ra &&
-					*(t_op *)ps->moves->next->content == op_pb)
+		if (*(t_op *)ps->moves->content == op_pa &&
+					*(t_op *)ps->moves->next->content == op_ra &&
+					*(t_op *)ps->moves->next->next->content == op_pb)
 		{
 			pb(ps);
 			rra(ps);
@@ -80,9 +80,9 @@ static void	ft_lstadd3_move(t_ps *ps, t_op op)
 			sa(ps);
 			ra(ps);
 		}
-		else if (op == op_pa &&
-					*(t_op *)ps->moves->content == op_rra &&
-					*(t_op *)ps->moves->next->content == op_pb)
+		else if (*(t_op *)ps->moves->content == op_pa &&
+					*(t_op *)ps->moves->next->content == op_rra &&
+					*(t_op *)ps->moves->next->next->content == op_pb)
 		{
 			pb(ps);
 			ra(ps);
@@ -90,9 +90,9 @@ static void	ft_lstadd3_move(t_ps *ps, t_op op)
 			rra(ps);
 			sa(ps);
 		}
-		else if (op == op_pb &&
-					*(t_op *)ps->moves->content == op_rb &&
-					*(t_op *)ps->moves->next->content == op_pa)
+		else if (*(t_op *)ps->moves->content == op_pb &&
+					*(t_op *)ps->moves->next->content == op_rb &&
+					*(t_op *)ps->moves->next->next->content == op_pa)
 		{
 			pa(ps);
 			rrb(ps);
@@ -100,9 +100,9 @@ static void	ft_lstadd3_move(t_ps *ps, t_op op)
 			sb(ps);
 			rb(ps);
 		}
-		else if (op == op_pb &&
-					*(t_op *)ps->moves->content == op_rrb &&
-					*(t_op *)ps->moves->next->content == op_pa)
+		else if (*(t_op *)ps->moves->content == op_pb &&
+					*(t_op *)ps->moves->next->content == op_rrb &&
+					*(t_op *)ps->moves->next->next->content == op_pa)
 		{
 			pa(ps);
 			rb(ps);

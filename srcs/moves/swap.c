@@ -13,7 +13,7 @@ static void	s_pile(t_list **alst)
 	}
 }
 
-void	sa(t_ps *ps)
+t_ps	*sa(t_ps *ps)
 {
 	t_op	move;
 
@@ -23,21 +23,23 @@ void	sa(t_ps *ps)
 		s_pile(&(ps->pile_a));
 		ft_lstadd_move(ps, move);
 	}
+	return (ps);
 }
 
-void	sb(t_ps *ps)
+t_ps	*sb(t_ps *ps)
 {
 	t_op	move;
 
-	if (ps->pile_a && ps->pile_a->next)
+	if (ps->pile_b && ps->pile_b->next)
 	{
 		move = op_sb;
 		s_pile(&(ps->pile_b));
 		ft_lstadd_move(ps, move);
-	}	
+	}
+	return (ps);
 }
 
-void	ss(t_ps *ps)
+t_ps	*ss(t_ps *ps)
 {
 	t_op	move;
 
@@ -45,4 +47,5 @@ void	ss(t_ps *ps)
 	s_pile(&(ps->pile_a));
 	s_pile(&(ps->pile_b));
 	ft_lstadd_move(ps, move);
+	return (ps);
 }

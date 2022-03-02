@@ -1,28 +1,25 @@
 #include "tri.h"
 
+static void dpr_small(t_ps *ps, int n)
+{
+	if (n < 3)
+	{
+		n_move(ps, &pa, n);
+		trisimple_n(ps, n);
+	}
+	else
+		insertleft_n(ps, 3);
+}
+
 void	rec_tridoublepivotright(t_ps *ps, int n, int start)
 {
 	void	*pivot1;
 	void	*pivot2;
 	int i;
 
-	if (n == 1)
-		pa(ps);
-	else if (n == 2)
-	{
-		if (*(int *)ps->pile_b->content < *(int *)ps->pile_b->next->content)
-			sb(ps);
-		pa(ps);
-		pa(ps);
-	}
-	// else if (n == 3)
-	// {
-	// 	tri_trois_right(ps);
-	// 	pa(ps);
-	// 	pa(ps);
-	// 	pa(ps);
-	// }
-	else if (n > 2)
+	if (n < 4)
+		dpr_small(ps, n);
+	else if (n > 3)
 	{
 		pivot1 = ft_lstgetn(ps->ordered, start + n / 3);
 		pivot2 = ft_lstgetn(ps->ordered, start + 2 * n / 3);
@@ -32,10 +29,7 @@ void	rec_tridoublepivotright(t_ps *ps, int n, int start)
 			if (ft_cmporder(ps->pile_b->content, pivot1))
 				rb(ps);
 			else if (ft_lstcmp(ps->pile_b, &ft_cmporder, pivot2))
-			{
-				pa(ps);
-				ra(ps);
-			}
+				ra(pa(ps));
 			else
 				pa(ps);
 		}
@@ -51,30 +45,18 @@ void	rec_tridoublepivotleftbot(t_ps *ps, int n, int start)
 	void	*pivot2;
 	int i;
 
-	if (n == 1)
-		rra(ps);
-	else if (n == 2) //on peut rajouter des conditions pour des n == 3 et 4 et 5 selon ce aui est le plus optimal
+	if (n < 4)
+		trisimple_n(n_move(ps, &rra, n), n);
+	else if (n > 3)
 	{
-		rra(ps);
-		rra(ps);
-		if (*(int *)ps->pile_a->content > *(int *)ps->pile_a->next->content)
-			sa(ps);
-	}
-	// else if (n == 3)
-	// 	tri_trois_left(ps);
-	else if (n > 2)
-	{
-		pivot1 = ft_lstgetn(ps->ordered, start + n / 3); // 1 / 2 lst[1] lst[2] pivot1 inclus dans moyen pivot2 inclus dans grand
+		pivot1 = ft_lstgetn(ps->ordered, start + n / 3);
 		pivot2 = ft_lstgetn(ps->ordered, start + 2 * n / 3);
 		i = 0;
 		while (i++ < n)
 		{
 			rra(ps);
 			if (ft_cmporder(ps->pile_a->content, pivot1))
-			{
-				pb(ps);
-				rb(ps);
-			}
+				rb(pb(ps));
 			else if (ft_lstcmp(ps->pile_a, &ft_cmporder, pivot2))
 				pb(ps);
 		}
@@ -84,52 +66,43 @@ void	rec_tridoublepivotleftbot(t_ps *ps, int n, int start)
 	}
 }
 
+static void dprb_small(t_ps *ps, int n)
+{
+	if (n == 1)
+		pa(rrb(ps));
+	if (n == 2)
+	{
+		rrb(rrb(ps));
+		if (*(int *)ps->pile_b->content < *(int *)ps->pile_b->next->content)
+			pa(rrb(pa(rb(ps))));
+		else
+			pa(pa(ps));
+	}
+	if (n == 3)
+	{
+		rrb(rrb(rrb(ps)));
+		insertleft_n(ps, 3);
+	}
+}
+
 void	rec_tridoublepivotrightbot(t_ps *ps, int n, int start)
 {
 	void	*pivot1;
 	void	*pivot2;
-	int i;
+	int		i;
 
-	if (n == 1)
+	if (n < 4)
+		dprb_small(ps, n);
+	else if (n > 3)
 	{
-		rrb(ps);
-		pa(ps);
-	}
-	else if (n == 2)
-	{
-		rrb(ps);
-		rrb(ps);
-		if (*(int *)ps->pile_b->content < *(int *)ps->pile_b->next->content)
-		{
-			rb(ps);
-			pa(ps);
-			rrb(ps);
-			pa(ps);
-		}
-		else
-			n_move(ps, &pa, 2);
-	}
-	// else if (n == 3)
-	// {
-	// 	n_move(ps, &rrb, 3);
-	// 	tri_trois_right(ps);
-	// 	pa(ps);
-	// 	pa(ps);
-	// 	pa(ps);
-	// }
-	else if (n > 2)
-	{
-		pivot1 = ft_lstgetn(ps->ordered, start + n / 3); // 1 / 2 lst[1] lst[2] pivot1 inclus dans moyen pivot2 inclus dans grand
+		pivot1 = ft_lstgetn(ps->ordered, start + n / 3);
 		pivot2 = ft_lstgetn(ps->ordered, start + 2 * n / 3);
 		i = 0;
 		while (i++ < n)
 		{
 			rrb(ps);
 			if (!ft_cmporder(ps->pile_b->content, pivot1) && ft_lstcmp(ps->pile_b, &ft_cmporder, pivot2))
-			{
-				pa(ps);
-				ra(ps);
-			}
+				ra(pa(ps));
 			else if (!ft_lstcmp(ps->pile_b, &ft_cmporder, pivot2))
 				pa(ps);
 		}
@@ -145,14 +118,9 @@ void	rec_tridoublepivotleft(t_ps *ps, int n, int start)
 	void	*pivot2;
 	int i;
 
-	if (n == 2)
-	{
-		if (*(int *)ps->pile_a->content > *(int *)ps->pile_a->next->content)
-			sa(ps);
-	}
-	// else if (n == 3)
-	// 	tri_trois_left(ps);
-	else if (n > 2)
+	if (n < 4)
+		trisimple_n(ps, n);
+	else if (n > 3)
 	{
 		pivot1 = ft_lstgetn(ps->ordered, start + n / 3); 
 		pivot2 = ft_lstgetn(ps->ordered, start + 2 * n / 3);
@@ -160,10 +128,7 @@ void	rec_tridoublepivotleft(t_ps *ps, int n, int start)
 		while (i++ < n)
 		{
 			if (ft_cmporder(ps->pile_a->content, pivot1))
-			{
-				pb(ps);
-				rb(ps);
-			}
+				rb(pb(ps));
 			else if (ft_lstcmp(ps->pile_a, &ft_cmporder, pivot2))
 				pb(ps);
 			else
@@ -174,8 +139,6 @@ void	rec_tridoublepivotleft(t_ps *ps, int n, int start)
 		rec_tridoublepivotrightbot(ps, n / 3, start);
 	}
 }
-
-//on utilise un indice sur la list ordered afin de ne pas retrier les "sous segments" car c'est deja fait de base.
 
 void	tridoublepivot(t_ps *ps)
 {

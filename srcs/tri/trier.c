@@ -24,17 +24,23 @@ static void	ft_do_tri(t_ps *ps, void (*f)(t_ps *ps))
 		ps->ordered = ft_lstmap(ps->pile_a, &copy, &free);
 	if (ft_lstsize(ps->moves) < ps->bm_size)
 		ft_lstswap(&(ps->moves), &(ps->b_moves));
-	ps->bm_size = ft_lstsize(ps->b_moves); //on reclacule quand meme, utiliser min de deux valeurs
+	ps->bm_size = ft_lstsize(ps->b_moves);
 }
 
 void	trier(t_ps *ps)
 {
+	int size;
+
+	size = ft_lstsize(ps->pile_init);
 	ft_do_tri(ps, &trirapide);
-	ft_do_tri(ps, &trisimple);
-	if (ps->ordered)
-		ft_do_tri(ps, &triradix);
+	if (size < 51)
+		ft_do_tri(ps, &trisimple);
+	// if (ps->ordered)
+	// 	ft_do_tri(ps, &triradix);
 	if (ps->ordered)
 		ft_do_tri(ps, &tripivot);
 	if(ps->ordered)
 		ft_do_tri(ps, &tridoublepivot);
+	if (ps->ordered && size < 51)
+		ft_do_tri(ps, &ft_triinsert);
 }
