@@ -42,5 +42,5 @@ int	main(int ac, char **av)
 	trier(&ps);
 	printfmove(ps.b_moves);
 	ps_free(&ps);
-	return (0);
+	return (EXIT_SUCCESS);
 }

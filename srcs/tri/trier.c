@@ -35,8 +35,8 @@ void	trier(t_ps *ps)
 	ft_do_tri(ps, &trirapide);
 	if (size < 51)
 		ft_do_tri(ps, &trisimple);
-	// if (ps->ordered)
-	// 	ft_do_tri(ps, &triradix);
+	if (ps->ordered)
+		ft_do_tri(ps, &tritriple);
 	if (ps->ordered)
 		ft_do_tri(ps, &tripivot);
 	if(ps->ordered)
