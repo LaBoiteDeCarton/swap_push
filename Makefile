@@ -30,7 +30,7 @@ all: ${NAME}
 clean:
 	make clean -C ${LFT}
 	rm -f ${OBJS}
-	rm -f ${OBJS_BONUS}
+	rm -f ${BONUS_OBJS}
 
 fclean: clean
 	make fclean -C ${LFT}
