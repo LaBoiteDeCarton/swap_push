@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tripivot.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:53:52 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:53:53 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "tri.h"
 
-void recpivotright(t_ps *ps, int n, int start)
+void	recpivotright(t_ps *ps, int n, int start)
 {
 	int	pivot;
 	int	i;
@@ -27,7 +39,7 @@ void recpivotright(t_ps *ps, int n, int start)
 	}
 }
 
-void recpivotleft(t_ps *ps, int n, int start)
+void	recpivotleft(t_ps *ps, int n, int start)
 {
 	int	pivot;
 	int	i;
@@ -47,11 +59,11 @@ void recpivotleft(t_ps *ps, int n, int start)
 		}
 		n_move(ps, &rra, n / 2 + (n % 2));
 		recpivotleft(ps, n / 2 + (n % 2), start + n / 2);
-		recpivotright(ps, n / 2 , start);
+		recpivotright(ps, n / 2, start);
 	}
 }
 
-void tripivot(t_ps *ps)
+void	tripivot(t_ps *ps)
 {
 	recpivotleft(ps, ft_lstsize(ps->pile_a), 0);
 }

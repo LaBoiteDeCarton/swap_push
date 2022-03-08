@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   trirapide.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:53:58 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:53:59 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "tri.h"
 
 static t_ps	*para(t_ps *ps)
@@ -7,17 +19,17 @@ static t_ps	*para(t_ps *ps)
 	return (ps);
 }
 
-static t_ps *pbrb(t_ps *ps)
+static t_ps	*pbrb(t_ps *ps)
 {
 	pb(ps);
 	rb(ps);
 	return (ps);
 }
 
-void rectrirapiderightn(t_ps *ps, int n)
+void	rectrirapiderightn(t_ps *ps, int n)
 {
-	int ls;
-	int rs;
+	int	ls;
+	int	rs;
 
 	if (n > 1)
 	{
@@ -42,10 +54,10 @@ void rectrirapiderightn(t_ps *ps, int n)
 	}
 }
 
-void rectrirapideleftn(t_ps *ps, int n)
+void	rectrirapideleftn(t_ps *ps, int n)
 {
-	int ls;
-	int rs;
+	int	ls;
+	int	rs;
 
 	if (n > 1)
 	{
@@ -70,7 +82,7 @@ void rectrirapideleftn(t_ps *ps, int n)
 	}
 }
 
-void trirapide(t_ps *ps)
+void	trirapide(t_ps *ps)
 {
 	rectrirapideleftn(ps, ft_lstsize(ps->pile_a));
 }

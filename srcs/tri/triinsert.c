@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   triinsert.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:53:45 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:53:47 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "tri.h"
 
-//on met la moitié de pileA dans pileB en faisant des insertions de façon a etre trié déjà
-//on insere dans la pile B dans l'ordre inverse et on remet dans A
-
-static int		ft_cmpequal(void *a, void*b)
+static int	ft_cmpequal(void *a, void*b)
 {
-	return(*(int *)a == *(int *)b);
+	return (*(int *)a == *(int *)b);
 }
 
 // static int	findn_min(t_ps *ps, int n)
@@ -62,10 +71,10 @@ static int	findn_max(t_ps *ps, int n)
 // 	}
 // }
 
-void insertleft_n(t_ps *ps, int n)
+void	insertleft_n(t_ps *ps, int n)
 {
 	int	i;
-	int j;
+	int	j;
 	int	max;
 
 	i = 0;
@@ -113,11 +122,11 @@ void insertleft_n(t_ps *ps, int n)
 // 	n_move(ps, &pa, ft_lstsize(ps->pile_b));
 // }
 
-void ft_triinsert(t_ps *ps)
+void	ft_triinsert(t_ps *ps)
 {
 	t_list	*lst_curr_min;
 
-	lst_curr_min =  ps->ordered;
+	lst_curr_min = ps->ordered;
 	while (ps->pile_a)
 	{
 		while (!ft_lstcmp(ps->pile_a, &ft_cmpequal, lst_curr_min->content))

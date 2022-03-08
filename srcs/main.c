@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:43:46 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:43:49 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "tri.h"
 
-static void	put_error(char *str)
+void	put_error(char *str)
 {
 	ft_putendl_fd(str, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
-static void init_arg(t_ps *ps)
+static void	init_arg(t_ps *ps)
 {
 	ps->pile_init = NULL;
 	ps->ordered = NULL;

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tri.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:28:20 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:28:21 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TRI_H
 # define TRI_H
 
-#include "push_swap.h"
-#include "moves.h"
-
+# include "push_swap.h"
+# include "moves.h"
 
 void	trier(t_ps *ps);
 
@@ -18,7 +29,6 @@ void	rec_tritripleleft(t_ps *ps, int n, int start);
 void	rec_tritripleleftbot(t_ps *ps, int n, int start);
 void	rec_tritriplerightbot(t_ps *ps, int n, int start);
 
-
 /*Tri Rapide : diviser pour reigner
 	On deplace la moitié de la pile dans la pile opposé.
 	Nous trions par recurence les deux piles.
@@ -32,8 +42,9 @@ void	rectrirapiderightn(t_ps *ps, int n);
 void	rectrirapideleftn(t_ps *ps, int n);
 
 /*Tri pivot : Diviser pour reigner mais en mieux
-	On choisit une valeur pivot correspondant au "milieu" de toute les valeurs de la pile.
-	La pile est divisé en deux parties contant respectivement les valeurs plus grandes
+	On choisit une valeur pivot correspondant au "milieu" de toute 
+	les valeurs de la pile. La pile est divisé en deux parties contant
+	respectivement les valeurs plus grandes
 	et plus petites que le pivot.
 	On utilise la recurence sur les sous piles.
 	Les deux piles sont ensuite fusionnées de facon triviale.
@@ -64,6 +75,7 @@ void	rec_tridoublepivotright(t_ps *ps, int n, int start);
 	ssi il est plus grand.
 	Complexité : O(N^2)
 */
+
 void	trisimple(t_ps *ps);
 void	trisimple_n(t_ps *ps, int n);
 
@@ -73,8 +85,9 @@ void	trisimple_n(t_ps *ps, int n);
 	On reinsere dans la pile A.
 	Complexité : à calculer (surement du N^2)
 */
+
 void	ft_triinsert(t_ps *ps);
-void 	insertright_n(t_ps *ps, int n);
+void	insertright_n(t_ps *ps, int n);
 void	insertleft_n(t_ps *ps, int n);
 void	insertrightnormal_n(t_ps *ps, int n);
 

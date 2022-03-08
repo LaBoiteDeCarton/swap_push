@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:27:54 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:27:56 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CHECKER_H
 # define CHECKER_H
 
-#include "push_swap.h"
-#include "moves.h"
-#include "libft.h"
+# include "push_swap.h"
+# include "moves.h"
+# include "libft.h"
 
 /*	checker : check if mouvements of STDIN sort the list of the arguments
 		Ordinary use :

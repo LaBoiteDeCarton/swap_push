@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   trier.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:53:28 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:53:29 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "tri.h"
 
-static void *copy(void *arg)
+static void	*copy(void *arg)
 {
-	int *n;
+	int	*n;
 
 	n = malloc(sizeof(int));
 	if (!n)
@@ -29,7 +41,7 @@ static void	ft_do_tri(t_ps *ps, void (*f)(t_ps *ps))
 
 void	trier(t_ps *ps)
 {
-	int size;
+	int	size;
 
 	size = ft_lstsize(ps->pile_init);
 	ft_do_tri(ps, &trirapide);
@@ -39,7 +51,7 @@ void	trier(t_ps *ps)
 		ft_do_tri(ps, &tritriple);
 	if (ps->ordered)
 		ft_do_tri(ps, &tripivot);
-	if(ps->ordered)
+	if (ps->ordered)
 		ft_do_tri(ps, &tridoublepivot);
 	if (ps->ordered && size < 51)
 		ft_do_tri(ps, &ft_triinsert);

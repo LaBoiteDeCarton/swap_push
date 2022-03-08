@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_issorted.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:45:47 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:45:48 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int		ft_pileissorted_n(t_list *pile, int n)
+int	ft_pileissorted_n(t_list *pile, int n)
 {
 	if (!pile)
 		return (1);
@@ -13,7 +25,7 @@ int		ft_pileissorted_n(t_list *pile, int n)
 	return (1);
 }
 
-int		ft_pileissorted(t_list *pile)
+int	ft_pileissorted(t_list *pile)
 {
 	if (!pile)
 		return (1);

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   invrotate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:48:40 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:48:41 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "moves.h"
 
 void	rr_pile(t_list **alst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (*alst && (*alst)->next)
 	{
@@ -40,7 +52,7 @@ t_ps	*rrb(t_ps *ps)
 	return (ps);
 }
 
-t_ps *rrr(t_ps *ps)
+t_ps	*rrr(t_ps *ps)
 {
 	t_op	move;
 

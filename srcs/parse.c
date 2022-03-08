@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/08 13:43:58 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/08 13:43:59 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	ft_isint(char *c)
@@ -5,7 +17,7 @@ static int	ft_isint(char *c)
 	if (*c == '-' || *c == '+')
 		c++;
 	if (!*c)
-		return(0);
+		return (0);
 	while (*c)
 	{
 		if (!ft_isdigit(*(c++)))
@@ -14,13 +26,13 @@ static int	ft_isint(char *c)
 	return (1);
 }
 
-static int		ft_cont_isinlst(t_list *lst, void *cont)
+static int	ft_cont_isinlst(t_list *lst, void *cont)
 {
 	if (!lst)
 		return (0);
 	if (*((int *)lst->content) == *(int *)cont)
 		return (1);
-	return (ft_cont_isinlst(lst->next, cont)); 
+	return (ft_cont_isinlst(lst->next, cont));
 }
 
 static t_list	*create_case(char *arg)
@@ -43,7 +55,7 @@ static t_list	*create_case(char *arg)
 
 int	parse(int ac, char **av, t_list **pile)
 {
-	t_list *new_case;
+	t_list	*new_case;
 
 	while (ac--)
 	{
